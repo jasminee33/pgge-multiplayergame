@@ -13,9 +13,19 @@ namespace PGGE
 
         public override void Update()
         {
-            Vector3 targetPos = mPlayerTransform.position;
-            targetPos.y += CameraConstants.CameraPositionOffset.y;
-            mCameraTransform.LookAt(targetPos);
+            //Q1-Extraction Method
+            //ref: https://refactoring.guru/extract-method
+            Track(); //calls function
+        }
+
+        //Encapulation- privated function
+        private void Track()
+        {
+            Vector3 targetPosition = mPlayerTransform.position;
+            targetPosition.y += CameraConstants.CameraPositionOffset.y;
+
+            // Use LookAt to track player
+            mCameraTransform.LookAt(targetPosition);
         }
     }
 }

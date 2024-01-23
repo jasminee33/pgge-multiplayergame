@@ -6,7 +6,12 @@ using Photon.Pun;
 
 public class Player_Multiplayer : MonoBehaviour
 {
+    //Multiplayer capability
+    #region Multiplayer capability
+
     private PhotonView mPhotonView;
+
+    #endregion
 
     [HideInInspector]
     public FSM mFsm = new FSM();
@@ -45,7 +50,8 @@ public class Player_Multiplayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mPhotonView = GetComponent<PhotonView>();
+        //mutiplayer capability
+        mPhotonView = gameObject.GetComponent<PhotonView>();
 
         mFsm.Add(new PlayerState_Multiplayer_MOVEMENT(this));
         mFsm.Add(new PlayerState_Multiplayer_ATTACK(this));
@@ -55,7 +61,9 @@ public class Player_Multiplayer : MonoBehaviour
 
     void Update()
     {
-        if (!mPhotonView.IsMine) return;
+        //Adding multiplayer capability
+        //update will only be called if this script is local to me
+        if (!mPhotonView.IsMine) return; 
 
         mFsm.Update();
         Aim();
@@ -100,29 +108,6 @@ public class Player_Multiplayer : MonoBehaviour
 
     public void Aim()
     {
-        // For Student ----------------------------------------------------------//
-        // Implement the logic of aiming and showing the crosshair
-        // if there is an intersection.
-        //
-        // Hints:
-        // Find the direction of fire.
-        // Find gunpoint as mentioned in the worksheet.
-        // Find the layer mask for objects that you want to intersect with.
-        //
-        // Do the Raycast
-        // if (intersected)
-        // {
-        //     // Draw a line as debug to show the aim of fire in scene view.
-        //     // Find the transformed intersected point to screenspace
-        //     // and then transform the crosshair position to this
-        //     // new position.
-        //     // Enable or set active the crosshair gameobject.
-        // }
-        // else
-        // {
-        //     // Hide or set inactive the crosshair gameobject.
-        // }
-        //-----------------------------------------------------------------------//
 
         Vector3 dir = -mGunTransform.right.normalized;
         // Find gunpoint as mentioned in the worksheet.

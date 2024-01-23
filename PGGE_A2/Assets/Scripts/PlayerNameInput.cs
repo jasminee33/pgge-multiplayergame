@@ -29,14 +29,14 @@ public class PlayerNameInput : MonoBehaviour
 
     public void SetPlayerName()
     {
-        string value = mInputField.text;
-        if (string.IsNullOrEmpty(value))
+        string value = mInputField.text; //gets value from input field
+        if (string.IsNullOrEmpty(value)) // if value is null
         {
             Debug.LogError("Player Name is null or empty");
             return;
         }
-        PhotonNetwork.NickName = value;
-        PlayerPrefs.SetString(playerNamePrefKey, value);
+        PhotonNetwork.NickName = value; //save value
+        PlayerPrefs.SetString(playerNamePrefKey, value); 
 
         Debug.Log("Nickname entered: " + value);
     }

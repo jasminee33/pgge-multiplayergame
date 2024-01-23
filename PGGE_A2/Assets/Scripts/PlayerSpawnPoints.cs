@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class PlayerSpawnPoints : MonoBehaviour
 {
-    public List<Transform> mSpawnPoints = new List<Transform>();
+    //Q1-Encapsulating
+    //referencing: https://procodeguide.com/programming/oop-concept-encapsulation-in-c-net/\
 
+    //private to prevent user to have direct access
+    [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
+
+    //player can interact with the spawn points
     public Transform GetSpawnPoint()
     {
-        if (mSpawnPoints.Count == 0) return this.transform;
-        return mSpawnPoints[Random.Range(0, mSpawnPoints.Count)].transform;
+        if (spawnPoints.Count == 0)
+        {
+            return transform;
+        }
+
+        return GetRandomSpawnPoint();
+    }
+
+    //private to not allow player to change and control access
+    private Transform GetRandomSpawnPoint()
+    {
+        int randomIndex = Random.Range(0, spawnPoints.Count);
+        return spawnPoints[randomIndex];
     }
 }

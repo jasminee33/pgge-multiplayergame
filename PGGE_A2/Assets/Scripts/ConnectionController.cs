@@ -39,6 +39,7 @@ namespace PGGE
             public void Connect()
             {
                 mBtnJoinRoom.SetActive(false);
+                //button will disable when the player get connected
                 mBtnBackMenu.SetActive(false);
                 mInpPlayerName.SetActive(false);
                 mConnectionProgress.SetActive(true);
